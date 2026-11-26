@@ -1,0 +1,17 @@
+{
+  "description": "Runs the flutter-signals convention checks on every file Claude writes or edits in a Flutter project, and blocks with the violation so it is fixed immediately.",
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Write|Edit|MultiEdit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 \"${CLAUDE_PLUGIN_ROOT}/scripts/flutter_signals_check.py\" --hook",
+            "timeout": 10
+          }
+        ]
+      }
+    ]
+  }
+}

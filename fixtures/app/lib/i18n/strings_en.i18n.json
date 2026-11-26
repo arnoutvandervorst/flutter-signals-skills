@@ -1,0 +1,4 @@
+{
+  "good": "Hello ${name}",
+  "bad": "Hello {name}"
+}

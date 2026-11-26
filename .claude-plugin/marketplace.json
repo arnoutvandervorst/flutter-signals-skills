@@ -1,0 +1,12 @@
+{
+  "name": "flutter-signals",
+  "owner": { "name": "Arnout van der Vorst" },
+  "metadata": { "description": "Skills and checks for signals-based Flutter + Firebase apps." },
+  "plugins": [
+    {
+      "name": "flutter-signals",
+      "source": "./",
+      "description": "Engineering skills and convention checks for Flutter + Firebase apps on the signals stack."
+    }
+  ]
+}
