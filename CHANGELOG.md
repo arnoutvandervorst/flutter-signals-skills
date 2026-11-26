@@ -5,6 +5,16 @@ Notable changes per release, newest first. Format follows
 [Semantic Versioning](https://semver.org/) (`.claude-plugin/plugin.json`). Each version has a
 GitHub release with the same notes.
 
+## [1.12.0] - 2026-11-26
+
+### Added
+- `widget-composition-and-layout` rule 10: a screen where the person makes several choices
+  and that would scroll is a wizard as the first proposal (one section per screen, segmented
+  progress with "step x of n · name", overview and summary, a draft per step shown in the
+  wizard and on the action that opens it, presets before free text), built on `step_kit`'s
+  `WizardState`. A checklist line in the definition of done.
+- `signals-flutter-conventions`: the multi-step primitive is `step_kit` `WizardState`.
+
 ## [1.11.1] - 2026-11-26
 
 ### Security

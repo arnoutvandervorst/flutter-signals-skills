@@ -81,6 +81,18 @@ touch it, then drop it from the baseline.
    scale (16 between sections, 8 / 12 inside). They skip the gap around a child that
    renders nothing, so a hidden section never leaves a double gap. Pinned by a
    vertical-spacing test.
+10. **Several choices that make the screen scroll → a wizard, as the first proposal.** A
+    form, check-in, journal, intake or completion where the person makes more than one
+    choice and the whole does not fit on one phone screen is presented as a wizard: one
+    section per screen, the progress on top (one segment per step plus "step 2 of 4 ·
+    name", never labelled pills, they run out of room), an overview before when it can be
+    left halfway, a summary with Edit per section after. Each step saves a draft where the
+    data allows it, the wizard says so ("draft saved · 10:21") and the action that opens it
+    shows the task as in progress, not done, until Done. Presets before free text. The
+    behaviour comes from the shared wizard state (`step_kit` `WizardState`: required steps
+    checked live, skip, save per step, resume, jumps); the app only draws it, with the
+    header on its tab's floor. A long single page is the exception, argued in the change,
+    for screens that are read rather than filled in.
 
 ## Definition of done
 
@@ -90,6 +102,7 @@ touch it, then drop it from the baseline.
 - [ ] Text through the common text widget (role + tone); spacing from the token scale.
 - [ ] No legacy Material import; no `_buildX()`; no hardcoded gutter.
 - [ ] New shared widget in the gallery test (light and dark).
+- [ ] A screen with several choices that scrolls is a wizard (rule 10), or the change says why not.
 - [ ] `flutter analyze` clean.
 
 Reference: `lib/presentation/common/gutter_scope.dart`, `page_body.dart`,

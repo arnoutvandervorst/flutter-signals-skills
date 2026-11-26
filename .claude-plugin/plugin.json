@@ -2,7 +2,7 @@
   "name": "flutter-signals",
   "displayName": "Flutter Signals Skills",
   "description": "Engineering skills and convention checks for Flutter + Firebase apps on signals_flutter, flutter_hooks, go_router, slang and dart_mappable.",
-  "version": "1.11.1",
+  "version": "1.12.0",
   "author": { "name": "Arnout van der Vorst" },
   "license": "UNLICENSED",
   "keywords": ["flutter", "dart", "signals", "firebase", "skills"]

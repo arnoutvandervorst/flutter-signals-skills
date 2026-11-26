@@ -93,7 +93,7 @@ Before writing a new primitive, check the app for these:
 | Tab switch | `TabShellScope.open` — `lib/presentation/common/tab_shell_scope.dart` |
 | Long-lived stream with recovery | `StreamRecoveryController` — `lib/signals/common/stream_recovery.dart` |
 | Image create / edit | `SingleImageUploadState` / `MultiImageUploadState` — `lib/signals/common/image_upload.dart` |
-| Multi-step flow | `CustomStep` + `StepperState` |
+| Multi-step flow (the default for any screen with several choices that scrolls) | `CustomStep` + `step_kit` `WizardState` |
 | UI enum with title / icon / colour | `enum X with EnumItem` in `lib/model/enum.dart` |
 | Page gutter | `PageBody` / `GutterScope` |
 | Vertical rhythm | `CustomSpacedColumn` / `spacedListChildren` |
