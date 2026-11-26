@@ -378,6 +378,9 @@ class GitDep:
     dirty: bool = False
 
 
+VERSION_TAG = re.compile(r"^v?\d+(\.\d+)*([-+][0-9A-Za-z.]+)?$")
+
+
 def git_deps(project: Path) -> list[GitDep]:
     """The git dependencies in pubspec.lock (own packages): name, url and pinned ref."""
     lock = project / "pubspec.lock"
@@ -396,15 +399,20 @@ def git_deps(project: Path) -> list[GitDep]:
         elif name:
             block.append(line)
     for d in deps:
-        res = run(["git", "ls-remote", "--tags", "--refs", d.url], project, timeout=60)
-        tags = [l.split("refs/tags/")[-1] for l in res.stdout.splitlines() if "refs/tags/" in l]
+        #* The url comes from the lockfile and the tags from the remote: neither may reach git
+        #* as an option (`--` before the url, only plain version tags kept).
+        if not re.match(r"^(https://|ssh://|git@|git://)", d.url):
+            continue
+        res = run(["git", "ls-remote", "--tags", "--refs", "--", d.url], project, timeout=60)
+        tags = [t for t in (l.split("refs/tags/")[-1] for l in res.stdout.splitlines() if "refs/tags/" in l)
+                if VERSION_TAG.match(t)]
         if tags:
             d.latest = max(tags, key=lambda t: vtuple(t.lstrip("v")))
         local = project.parent / d.name
         if (local / ".git").exists():
             d.local = str(local)
             if d.latest:
-                count = run(["git", "rev-list", "--count", f"{d.latest}..HEAD"], local)
+                count = run(["git", "rev-list", "--count", "--end-of-options", f"refs/tags/{d.latest}..HEAD"], local)
                 d.untagged = int(count.stdout.strip() or 0) if count.returncode == 0 else 0
             d.dirty = bool(run(["git", "status", "--porcelain"], local).stdout.strip())
     return deps

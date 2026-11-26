@@ -5,6 +5,13 @@ Notable changes per release, newest first. Format follows
 [Semantic Versioning](https://semver.org/) (`.claude-plugin/plugin.json`). Each version has a
 GitHub release with the same notes.
 
+## [1.11.1] - 2026-11-26
+
+### Security
+- `deps_update.py`: a git dependency's url and the remote's tag names can no longer reach git
+  as options. Only https, ssh and git urls are queried (with `--` before the url), only plain
+  version tags are kept, and `rev-list` gets `--end-of-options` and a `refs/tags/` range.
+
 ## [1.11.0] - 2026-11-26
 
 First public release.
